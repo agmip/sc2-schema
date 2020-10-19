@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-sheets-schema.json",
+    "title": "",
+    "description": "",
+    "type":"object",
+    "properties": {
+        "sheet_name": {
+            "type": "string"
+        },
+        "table_index": {
+            "type": "number"
+        },  
+        "data_start_row":{
+            "type": "number"
+        },
+        "data_end_row": {
+            "type": "number"
+        },
+        "comment": {
+            "type": "string"
+        },
+        "mappings":{
+            "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-mapping-entry-schema.json"
+        }
+    },
+    "anyOf": [
+        {"required": ["sheet_name"]},
+        {"required": ["table_index"]}
+    ],
+    "required": ["mappings"]
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-agmip-translation-mappings-schema.json",
+    "title": "",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "primary_ex_sheet": true,
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "object",
+                        "properties": {
+                            "file_metadata": {
+                                "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/file-metadata-schema.json"
+                            },
+                            "sheets": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "https://api.agmip.org.schemas/annotated-data/2020-09/sc2-sheets-schema.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": []
+}

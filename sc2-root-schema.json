@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-root-schema.json",
+    "title": "Sidecar File 2",
+    "description": "A translation unit used to annotate arbitrary data to the ICASA dictionary and enable translation to AgMIP Crop Experiment (ACE) format.",
+    "type": "object",
+    "properties": {
+        "mapping_info": {
+            "description": "Metadata about this translation unit",
+            "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/mapping-info.json"
+        },
+        "dataset_metadata": {
+            "description": "Metadata about the dataset. SHOULD be provided by other tools (COPO, ADC, etc.)"
+        },
+        "agmip_translation_mappings": {
+            "description": "The ICASA annotation root object",
+            "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-agmip-translaton-mappings-schema.json"
+        },
+        "xrefs": {
+            "type": "array",
+            "items": {
+                "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/xref-schema.json"
+            }
+        }
+    },
+    "required": ["mapping_info", "agmip_translation_mappings"]
+}

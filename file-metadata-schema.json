@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/file-metadata-schema.json",
+    "title": "",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "file_name": {
+            "type": "string",
+            "description": "Filename of the resource"
+        },
+        "content-type": {
+            "type": "string",
+            "description": "Media type of the resource"
+        },
+        "file_url": {
+            "type": "string",
+            "description": "The permanent URL (DOI) for the resource. MUST be downloadable/accessable; MAY be an archive."
+        }
+    },
+    "required": ["file_name", "file_url", "content-type"]
+}

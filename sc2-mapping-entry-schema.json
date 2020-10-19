@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-mapping-entry-schema.json",
+    "title": "SC2 ICASA Mapping Schema",
+    "description": "The per-column instructions to map the data in the column of the table of sub-table to ICASA.",
+    "type": "object",
+    "properties": {
+        "column_header":{
+            "type": "string"
+        },
+        "column_index": {
+            "type": "number"
+        },
+        "icasa": {
+            "type": "string"
+        },
+        "unit": {
+            "type": "string"
+        },
+        "formula": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "function": {
+                        "type": "string"
+                    },
+                    "args": {
+                        "type": "object"
+                    }
+                },
+                "required": ["function"]
+            }
+        },
+        "description": {
+            "type": "string"
+        }
+    },
+    "required": ["column_index", "icasa"]
+}
