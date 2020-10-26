@@ -1,8 +1,8 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-agmip-translation-mappings-schema.json",
-    "title": "",
-    "description": "",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/xref-schema.json",
+    "title": "Cross-references Schema",
+    "description": "This portion of the schema allows for cross-linking other linked schemas from this dataset.",
     "type": "object",
     "properties": {
         "xref_provider": {
