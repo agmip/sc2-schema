@@ -8,6 +8,7 @@
         "primary_ex_sheet": true,
         "files": {
             "type": "array",
+            "minItems": 1,
             "items": {
                 "type": "object",
                 "properties": {
@@ -19,6 +20,7 @@
                             },
                             "sheets": {
                                 "type": "array",
+                                "minItems": 1,
                                 "items": {
                                     "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-sheets-schema.json"
                                 }
