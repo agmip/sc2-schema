@@ -20,7 +20,7 @@
                             "sheets": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "https://api.agmip.org.schemas/annotated-data/2020-09/sc2-sheets-schema.json"
+                                    "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-sheets-schema.json"
                                 }
                             }
                         }

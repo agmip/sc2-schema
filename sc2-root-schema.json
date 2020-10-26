@@ -14,7 +14,7 @@
         },
         "agmip_translation_mappings": {
             "description": "The ICASA annotation root object",
-            "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-agmip-translation-mappings-schema.json"
+            "$ref": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-translation-mappings-schema.json"
         },
         "xrefs": {
             "type": "array",
