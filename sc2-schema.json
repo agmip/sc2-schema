@@ -1,0 +1,182 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://api.agmip.org/schemas/annotated-data/2020-09/sc2-root-schema.json",
+    "title": "Sidecar File 2 Schema",
+    "description": "A translation JSON used to annotate arbitrary data to the ICASA dictionary and enable translation to AgMIP Crop Experiment (ACE) format.",
+    "definitions": {
+        "dataset-metadata": {
+            "$comment": "Metadata about the dataset this translation mapping This SHOULD be provided by an external entity. This COULD be a way to save the link to original dataset metadata from a different repository. The schema DOES NOT validate this object.",
+            "type": "object"
+        },
+        "mapping-info": {
+            "type": "object",
+            "properties": {
+                "mapping_author": {
+                    "type": "string",
+                    "description": "Indicator of the mapping author, SHOULD be an email address.",
+                    "$comment": "This field needs to be discuessed and expanded to be better for researchers"
+                },
+                "source_url": {
+                    "type": "string",
+                    "description": "The base URL (DOI) for the entire dataset being described."
+                }
+
+            },
+            "required": [
+                "mapping_author",
+                "source_url"
+            ]
+        },
+        "mapping-item": {
+            "type": "object",
+            "properties": {
+                "column_header":{
+                    "type": "string"
+                },
+                "column_index": {
+                    "type": "number"
+                },
+                "icasa": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "formula": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "function": {
+                                "type": "string"
+                            },
+                            "args": {
+                                "type": "object"
+                            }
+                        },
+                        "required": ["function"]
+                    }
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "oneOf": [
+                {"required": ["column_index", "icasa"]},
+                {"required": ["value", "icasa"]}
+            ]
+        },
+        "sheet-item": {
+            "type":"object",
+            "properties": {
+                "sheet_name": {
+                    "type": "string"
+                },
+                "table_index": {
+                    "type": "number"
+                },  
+                "data_start_row":{
+                    "type": "number"
+                },
+                "data_end_row": {
+                    "type": "number"
+                },
+                "comment": {
+                    "type": "string"
+                },
+                "mappings":{
+                    "type":"array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/mapping-item"
+                    }
+                }
+            },
+            "anyOf": [
+                {"required": ["sheet_name"]},
+                {"required": ["table_index"]}
+            ],
+            "required": ["mappings"]
+        },
+        "file-metadata": {
+            "type": "object",
+            "properties": {
+                "file_name": {
+                    "type": "string",
+                    "description": "Filename of the resource"
+                },
+                "content-type": {
+                    "type": "string",
+                    "description": "Media type of the resource"
+                },
+                "file_url": {
+                    "type": "string",
+                    "description": "The permanent URL (DOI) for the resource. MUST be downloadable/accessable; MAY be an archive."
+                }
+            },
+            "required": ["file_name", "content-type"],
+            "$comment": "Have to work out the process of file_url in the context of desktop users and ADC"
+        },
+        "file-item": {
+            "type": "object",
+            "properties": {
+                "file": {
+                    "type": "object",
+                    "properties": {
+                        "file_metadata": {
+                            "$ref": "#/definitions/file-metadata"
+                        },
+                        "sheets": {
+                            "type":"array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "#/definitions/sheet-item"
+                            }
+                        }
+                    },
+                    "required": ["file_metadata", "sheets"]
+                }
+            },
+            "required": ["file"]
+        }
+    },        
+    "type": "object",
+    "properties": {
+        "mapping_info": {
+            "description": "Metadata about this sidecar file",
+            "$ref": "#/definitions/mapping-info"
+        },
+        "dataset_metadata": {
+            "$ref": "#/definitions/dataset-metadata"
+        },
+        "agmip_translation_mappings": {
+            "description": "The ICASA annotation root object",
+            "type": "object",
+            "properties": {
+                "files": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/file-item"
+                    }
+                }
+            }
+        },
+        "xrefs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+    "properties": {
+        "xref_provider": {
+            "type": "string"
+        },
+        "xref_url": {
+            "type": "string"
+        }
+    },
+    "required": ["xref_provider", "xref_url"]
+            }
+        }
+    },
+    "required": ["mapping_info", "agmip_translation_mappings"]
+}
