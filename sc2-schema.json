@@ -138,6 +138,42 @@
                 }
             },
             "required": ["file"]
+        },
+        "relation-key": {
+            "type": "object",
+            "properties": {
+                "column_index": {
+                    "type": "integer"
+                }
+            }
+        },
+        "relation-keys":{
+            "type": "array",
+            "minItems":1,
+            "items": {
+                "$ref": "#/definitions/relation-key"
+            }
+        },
+        "relationship-item":{
+            "type": "object",
+            "properties": {
+                "file": {"type":"string"},
+                "sheet": {"type": "string"},
+                "keys": {"$ref": "#/definitions/relation-keys"}
+            },
+            "required": ["file", "sheet"]
+        },
+        "relationship": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "$ref": "#/definitions/relationship-item"
+                },
+                "to": {
+                    "$ref": "#/definitions/relationship-item"
+                }
+            },
+            "required": ["from", "to"]
         }
     },        
     "type": "object",
@@ -153,6 +189,25 @@
             "description": "The ICASA annotation root object",
             "type": "object",
             "properties": {
+                "primary_ex_sheet": {
+                    "type":"object",
+                    "properties": {
+                        "file": {
+                            "type":"string"
+                        },
+                        "sheet": {
+                            "type":"string"
+                        }
+                    },
+                    "required": ["file", "sheet"]
+                },
+                "relations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/relationship"
+                    }
+                },
                 "files": {
                     "type": "array",
                     "minItems": 1,
