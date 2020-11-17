@@ -59,6 +59,18 @@
                 },
                 "description": {
                     "type": "string"
+                },
+                "code_mappings": {
+                    "type": "object",
+                    "patternProperties": {
+                        ".+": {"type": "string"}
+                    }
+                },
+                "code_descriptions": {
+                    "type": "object",
+                    "patternProperties": {
+                        ".+": {"type": "string"}
+                    }
                 }
             },
             "oneOf": [
